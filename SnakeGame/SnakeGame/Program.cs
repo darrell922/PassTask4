@@ -17,7 +17,8 @@ namespace SnakeGame
                 char ch = '*';
                 bool gameLive = true;
                 ConsoleKeyInfo consoleKey; // holds whatever key is pressed
-                int fy = 15, fx = 15;
+                int fy = 20, fx = 50;
+                int endgame = 0;
             
 
             // location info & display
@@ -35,14 +36,15 @@ namespace SnakeGame
 
                 // whether to keep trails
                 bool trail = false;
-
+                
+                //spawn starting food edited by Dennis
                 Console.SetCursorPosition(fx, fy);
 
                 Console.Write('x');
 
             //spawn obstacle edited by Brandon
             Random rnd = new Random();
-            int random = rnd.Next(10,20);
+            int random = rnd.Next(5,22);
             Console.SetCursorPosition(random, random);
             Console.Write("||");
 
@@ -115,20 +117,30 @@ namespace SnakeGame
                     if (y == fy && x == fx)
 
                     {
+                        //Food does not spawn at obstacle edited by Dennis
+                        do
+                        {
+                            fx = rnd.Next(78);
 
-                        fx = rnd.Next(78);
+                            fy = rnd.Next(3, 23);
 
-                        fy = rnd.Next(3, 23);
+                            Console.SetCursorPosition(fx, fy);
 
-                        Console.SetCursorPosition(fx, fy);
+                            Console.Write('x');
 
-                        Console.Write('x');
+                        } while (fx == random && fy == random);
+                    endgame++;
 
-                    }
+
+                }
 
                 //Spawn obstacle edited by Brandon
                 if (y == random && x == random)
                 {
+                    gameLive = false;
+                }
+                //Winning Condition edited by Dennis
+                if (endgame > 5) {
                     gameLive = false;
                 }
 
@@ -143,10 +155,10 @@ namespace SnakeGame
 
             Console.Clear();
             Console.SetCursorPosition(50, 10);
-            Console.Write(" ========Game Over======== ");
+            Console.Write(" ========Avengers:EndGame!======== ");
             Console.SetCursorPosition(50, 11);
-            Console.WriteLine("Press any key to Play Again");
-            Console.SetCursorPosition(47, 12);
+            Console.WriteLine("Press any key to start playing");
+            Console.SetCursorPosition(47, 14);
             Console.WriteLine("Press 'Enter' key to quit the game");
         }
     }
