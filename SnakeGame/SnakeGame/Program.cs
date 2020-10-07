@@ -14,7 +14,7 @@ namespace SnakeGame
             char ch = '*';
             bool gameLive = true;
             ConsoleKeyInfo consoleKey; // holds whatever key is pressed
-
+            int fy = 15, fx = 15;
             // location info & display
             int x = 0, y = 2; // y is 2 to allow the top row for directions & space
             int dx = 1, dy = 0;
@@ -30,6 +30,10 @@ namespace SnakeGame
 
             // whether to keep trails
             bool trail = false;
+
+            Console.SetCursorPosition(fx, fy);
+
+            Console.Write('x');
 
             do // until escape
             {
@@ -49,7 +53,7 @@ namespace SnakeGame
                     consoleKey = Console.ReadKey(true);
                     switch (consoleKey.Key)
                     {
-                      
+
                         case ConsoleKey.UpArrow: //UP
                             dx = 0;
                             dy = -1;
@@ -95,6 +99,26 @@ namespace SnakeGame
                 if (y < 2)
                     y = consoleHeightLimit;
 
+                //Spawn food
+                Random rnd = new Random();
+
+                if (y == fy && x == fx)
+
+                {
+
+                    fx = rnd.Next(78);
+
+                    fy = rnd.Next(3, 23);
+
+                    Console.SetCursorPosition(fx, fy);
+
+                    Console.Write('x');
+
+
+                }
+
+
+
                 // write the character in the new position
                 Console.SetCursorPosition(x, y);
                 Console.Write(ch);
@@ -105,5 +129,5 @@ namespace SnakeGame
             } while (gameLive);
         }
     }
-    
+
 }
