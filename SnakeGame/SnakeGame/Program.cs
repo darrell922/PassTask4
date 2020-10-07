@@ -38,13 +38,10 @@ namespace SnakeGame
 
                 // whether to keep trails
                 bool trail = false;
-<<<<<<< HEAD
                 Console.SetCursorPosition(50, 0);
                 Console.Write("Score :"+score);
-=======
                 
                 //spawn starting food edited by Dennis
->>>>>>> 5e505af4f00ddf64dab950eb53d443968fc97d74
                 Console.SetCursorPosition(fx, fy);
 
                 Console.Write('x');
@@ -135,9 +132,7 @@ namespace SnakeGame
                             Console.Write('x');
 
                         } while (fx == random && fy == random);
-                    endgame++;
-
-<<<<<<< HEAD
+                         endgame++;
                         //snake length increase by darrell
 
                         ch += "*";
@@ -149,12 +144,10 @@ namespace SnakeGame
                         Console.SetCursorPosition(50, 0);
                         Console.Write("Score :" + score);
                     }
-=======
 
-                }
->>>>>>> 5e505af4f00ddf64dab950eb53d443968fc97d74
 
-               
+                
+
 
                 //Spawn obstacle edited by Brandon
                 if (y == random && x == random)
@@ -173,17 +166,14 @@ namespace SnakeGame
                     // pause to allow eyeballs to keep up
                     System.Threading.Thread.Sleep(delayInMillisecs);
 
-                } while (gameLive);
+        } while(gameLive);
 
             Console.Clear();
             Console.SetCursorPosition(50, 10);
-<<<<<<< HEAD
             Console.Write(" ========Game Over======== ");
             Console.SetCursorPosition(50, 0);
             Console.Write("Score :" + score);
-=======
             Console.Write(" ========Avengers:EndGame!======== ");
->>>>>>> 5e505af4f00ddf64dab950eb53d443968fc97d74
             Console.SetCursorPosition(50, 11);
             Console.WriteLine("Press any key to start playing");
             Console.SetCursorPosition(47, 14);
