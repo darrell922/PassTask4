@@ -14,7 +14,9 @@ namespace SnakeGame
                 Console.ReadKey();
 
                 // display this char on the console during the game
-                char ch = '*';
+                string ch = "***";
+                string blank1 = "   ";
+                int score = 0;
                 bool gameLive = true;
                 ConsoleKeyInfo consoleKey; // holds whatever key is pressed
                 int fy = 15, fx = 15;
@@ -31,11 +33,12 @@ namespace SnakeGame
                 Console.Clear();
 
                 // delay to slow down the character movement so you can see it
-                int delayInMillisecs = 50;
+                int delayInMillisecs = 100;
 
                 // whether to keep trails
                 bool trail = false;
-
+                Console.SetCursorPosition(50, 0);
+                Console.Write("Score :"+score);
                 Console.SetCursorPosition(fx, fy);
 
                 Console.Write('x');
@@ -95,7 +98,7 @@ namespace SnakeGame
                     // find the current position in the console grid & erase the character there if don't want to see the trail
                     Console.SetCursorPosition(x, y);
                     if (trail == false)
-                        Console.Write(' ');
+                        Console.Write(blank1);
 
                     // calculate the new position
                     // note x set to 0 because we use the whole width, but y set to 1 because we use top row for instructions
@@ -113,7 +116,6 @@ namespace SnakeGame
 
                     //Spawn food edited by Dennis
                     if (y == fy && x == fx)
-
                     {
 
                         fx = rnd.Next(78);
@@ -124,7 +126,19 @@ namespace SnakeGame
 
                         Console.Write('x');
 
+                        //snake length increase by darrell
+
+                        ch += "*";
+                        blank1 += " ";
+                        if (trail == false)
+                            Console.Write(blank1);
+
+                        score++;
+                        Console.SetCursorPosition(50, 0);
+                        Console.Write("Score :" + score);
                     }
+
+               
 
                 //Spawn obstacle edited by Brandon
                 if (y == random && x == random)
@@ -144,6 +158,8 @@ namespace SnakeGame
             Console.Clear();
             Console.SetCursorPosition(50, 10);
             Console.Write(" ========Game Over======== ");
+            Console.SetCursorPosition(50, 0);
+            Console.Write("Score :" + score);
             Console.SetCursorPosition(50, 11);
             Console.WriteLine("Press any key to Play Again");
             Console.SetCursorPosition(47, 12);

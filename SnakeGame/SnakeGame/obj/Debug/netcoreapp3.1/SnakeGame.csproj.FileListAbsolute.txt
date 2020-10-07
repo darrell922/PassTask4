@@ -50,3 +50,16 @@ C:\Users\User\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.As
 C:\Users\User\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.dll
 C:\Users\User\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.pdb
 C:\Users\User\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.genruntimeconfig.cache
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.exe
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.deps.json
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.runtimeconfig.json
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.runtimeconfig.dev.json
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.dll
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\bin\Debug\netcoreapp3.1\SnakeGame.pdb
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.csprojAssemblyReference.cache
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.AssemblyInfoInputs.cache
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.AssemblyInfo.cs
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.dll
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.pdb
+C:\Users\Asus\Desktop\PassTask4\SnakeGame\SnakeGame\obj\Debug\netcoreapp3.1\SnakeGame.genruntimeconfig.cache
