@@ -17,7 +17,7 @@ namespace SnakeGame
                 string ch = "***";
                 string blank1 = "   ";
                 int score = 0;
-                bool gameLive = true;
+                bool gameLive = true;//sets game working!
                 ConsoleKeyInfo consoleKey; // holds whatever key is pressed
                 int fy = 20, fx = 50;
                 int endgame = 0;
@@ -145,10 +145,6 @@ namespace SnakeGame
                         Console.Write("Score :" + score);
                     }
 
-
-                
-
-
                 //Spawn obstacle edited by Brandon
                 if (y == random && x == random)
                 {
@@ -158,16 +154,19 @@ namespace SnakeGame
                 if (endgame > 5) {
                     gameLive = false;
                 }
+				
 
                 // write the character in the new position
                 Console.SetCursorPosition(x, y);
                     Console.Write(ch);
 
+					
                     // pause to allow eyeballs to keep up
                     System.Threading.Thread.Sleep(delayInMillisecs);
 
         } while(gameLive);
 
+		
             Console.Clear();
             Console.SetCursorPosition(50, 10);
             Console.Write(" ========Game Over======== ");
