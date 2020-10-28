@@ -32,3 +32,10 @@ C:\Users\User\Desktop\Snake-master\Snake\obj\Debug\Snake.csprojAssemblyReference
 C:\Users\User\Desktop\Snake-master\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Snake-master\Snake\obj\Debug\Snake.exe
 C:\Users\User\Desktop\Snake-master\Snake\obj\Debug\Snake.pdb
+C:\Users\Asus\Desktop\PassTask4\Snake\bin\Debug\Snake.exe.config
+C:\Users\Asus\Desktop\PassTask4\Snake\bin\Debug\Snake.exe
+C:\Users\Asus\Desktop\PassTask4\Snake\bin\Debug\Snake.pdb
+C:\Users\Asus\Desktop\PassTask4\Snake\obj\Debug\Snake.csprojAssemblyReference.cache
+C:\Users\Asus\Desktop\PassTask4\Snake\obj\Debug\Snake.csproj.CoreCompileInputs.cache
+C:\Users\Asus\Desktop\PassTask4\Snake\obj\Debug\Snake.exe
+C:\Users\Asus\Desktop\PassTask4\Snake\obj\Debug\Snake.pdb

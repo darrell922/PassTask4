@@ -177,15 +177,18 @@ namespace Snake
                 Console.SetCursorPosition(110, 0);
                 Console.Write("Score: {0}", userPoints);
 
-            
+                Console.SetCursorPosition(25, 0);
+                Console.WriteLine("Remaining Life:" + snakeLife);
                 // the game will be over when the snake hits it body or the obstacles
-
+                    
                 if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
-                {
+                    {
                     //Added snake life and dead sound
                     dying.Play();
                     snakeLife--;
-                   
+
+                    //add 1 life when user reach 300 points
+
                     Console.SetCursorPosition(25, 0);
                     Console.WriteLine("Remaining Life:"+snakeLife);
                     if (snakeLife == 0)
@@ -254,6 +257,12 @@ namespace Snake
                 if (snakeNewHead.y == food.y && snakeNewHead.x == food.x)
                 {
                     // Things that will be happening with the FOOD once it got ate by the snake
+
+                    // if user had reach reach a score of 300 it will plus one life
+                    if (userPoints==200)
+                    {
+                        snakeLife += 1;
+                    }
                     do
                     {
                         food = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight), //randomize the new position of the food

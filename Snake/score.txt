@@ -11,3 +11,7 @@ Darrell - 0
 s - 0
 sssssaaaa - 600
 sdede - 100
+darrell - 300
+darrell - 200
+aadada - 400
+adasd - 300
