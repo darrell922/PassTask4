@@ -1,0 +1,16 @@
+
+
+
+
+
+
+
+
+Instruction                                                                               
+
+1. Use the arrow key to move the snake
+2. Eat the foods and it will increase your score
+3. Avoid the obstacles to avoid death
+4. Reach 1000 points to win the game
+
+Press Enter to go back...

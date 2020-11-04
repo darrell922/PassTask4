@@ -5,14 +5,14 @@ using System.Text;
 using System.Collections;
 using System.Threading;
 using System.IO;
-class start
+class start // menu for the snake game (Darrell Lai Vui Kiat)
 {
     public void mainmenu()
     {
         string end = "loop";
         do
         {
-            string menu1 = @"C:\Users\Asus\Desktop\PassTask4\Snake\mainmenu.txt";
+            string menu1 = @"mainmenu.txt";
             string[] menu = System.IO.File.ReadAllLines(menu1);
             foreach (string line in menu)
             {
@@ -36,7 +36,7 @@ class start
                 while (insloop)
                 {
                     Console.Clear();
-                    string help1 = @"C:\Users\Asus\Desktop\PassTask4\Snake\helppage.txt";
+                    string help1 = @"helppage.txt";
                     string[] help = System.IO.File.ReadAllLines(help1);
                     foreach (string line in help)
                     {
@@ -106,6 +106,8 @@ namespace Snake
             double sleepTime = 100;
             string nametext;
             int direction = right; // To make the snake go to the right when the program starts
+
+            //start menu (Darrell Lai Vui Kiat)
             start start = new start();
             start.mainmenu();
             do
@@ -171,7 +173,7 @@ namespace Snake
             }
             while (snakeElements.Contains(food) || obstacles.Contains(food)); //to make sure that food doesnt spawn on both snake and obstacles
 
-            //Power food creation
+            //Power food creation (Darrell Lai Vui Kiat)
             Position Powerfood;
             do //randomize where the powerfood spawns
             {
@@ -300,7 +302,7 @@ namespace Snake
                     }
                    
                 }
-                //What will happened if the snake got fed on powerfood:
+                //What will happened if the snake got fed on powerfood: (Darrell Lai Vui Kiat)
                 if (snakeNewHead.y == Powerfood.y && snakeNewHead.x == Powerfood.x)
                 {
                     // Things that will be happening with the FOOD once it got ate by the snake
@@ -415,6 +417,7 @@ namespace Snake
                     lastFoodTime = Environment.TickCount;
                 }
 
+                // remove power food after exceeding 20s (Darrell Lai Vui Kiat)
                 if (count1==0) {
                     if (Environment.TickCount - lastFoodTime2 >= foodDissapearTime2)
                     {
