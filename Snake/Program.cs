@@ -4,7 +4,66 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Threading;
+using System.IO;
+class start
+{
+    public void mainmenu()
+    {
+        string end = "loop";
+        do
+        {
+            string menu1 = @"C:\Users\Asus\Desktop\PassTask4\Snake\mainmenu.txt";
+            string[] menu = System.IO.File.ReadAllLines(menu1);
+            foreach (string line in menu)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\t \t \t  " + line);
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(40, 16);
+            Console.Write("Choice: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            ConsoleKeyInfo keyInput = Console.ReadKey();
+            if (keyInput.Key == ConsoleKey.D1)
+            {
+                Console.Clear();
+                end = "exitloop";
+            }
 
+            else if (keyInput.Key == ConsoleKey.D2)
+            {
+                var insloop = true;
+                while (insloop)
+                {
+                    Console.Clear();
+                    string help1 = @"C:\Users\Asus\Desktop\PassTask4\Snake\helppage.txt";
+                    string[] help = System.IO.File.ReadAllLines(help1);
+                    foreach (string line in help)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\t \t \t \t" + line);
+                    }
+                    Console.SetCursorPosition(57, 13);
+                    ConsoleKeyInfo userInput = Console.ReadKey();
+                    if (userInput.Key == ConsoleKey.Enter)
+                    {
+                        insloop = false;
+                        Console.Clear();
+                    }
+                }
+            }
+            else if (keyInput.Key == ConsoleKey.D3)
+            {
+                Console.SetCursorPosition(40, 17);
+                System.Environment.Exit(1);
+            }
+            else
+            {
+                Console.Clear();
+            }
+        } while (end == "loop");
+    }
+}
 namespace Snake
 {
     struct Position
@@ -36,15 +95,22 @@ namespace Snake
             byte down = 2;
             byte up = 3;
             int lastFoodTime = 0;
+            int lastFoodTime2 = 0;
+            int lastFoodTime3 = 0;
             int snakeLife = 3;
+            int userPoints = 0;
+            int count1=0;
             int foodDissapearTime = 12000;
+            int foodDissapearTime2 = 20000;
             int negativePoints = 0;
             double sleepTime = 100;
             string nametext;
             int direction = right; // To make the snake go to the right when the program starts
-
+            start start = new start();
+            start.mainmenu();
             do
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.SetCursorPosition(2, 5);
                 Console.WriteLine("Please Enter your name!:");
                 Console.SetCursorPosition(2, 6);
@@ -56,7 +122,8 @@ namespace Snake
             Random randomNumbersGenerator = new Random();
             Console.BufferHeight = Console.WindowHeight;
             lastFoodTime = Environment.TickCount;
-
+            lastFoodTime2 = Environment.TickCount;
+            lastFoodTime3 = Environment.TickCount;
 
 
 
@@ -94,9 +161,6 @@ namespace Snake
                 Console.Write("=");
             }
 
-
-
-            
             //Food Creation
 
             Position food;
@@ -106,6 +170,15 @@ namespace Snake
                     randomNumbersGenerator.Next(0, Console.WindowWidth));
             }
             while (snakeElements.Contains(food) || obstacles.Contains(food)); //to make sure that food doesnt spawn on both snake and obstacles
+
+            //Power food creation
+            Position Powerfood;
+            do //randomize where the powerfood spawns
+            {
+                Powerfood = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
+                    randomNumbersGenerator.Next(0, Console.WindowWidth));
+            }
+            while (snakeElements.Contains(Powerfood) || obstacles.Contains(Powerfood));
 
 
             //Movement implementation
@@ -169,8 +242,80 @@ namespace Snake
                     Console.Write("*");
                 }
 
-                int userPoints = (snakeElements.Count - 4) * 100;
+                //What will happened if the snake got fed:
+                if (snakeNewHead.y == food.y && snakeNewHead.x == food.x)
+                {
+                    // Things that will be happening with the FOOD once it got ate by the snake
+                    userPoints += 100;
+                    // if user had reach reach a score of 300 it will plus one life
+                    if (userPoints == 200)
+                    {
+                        snakeLife += 1;
+                    }
+                    do
+                    {
+                        food = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight), //randomize the new position of the food
+                            randomNumbersGenerator.Next(0, Console.WindowWidth));
+                    }
+                    while (snakeElements.Contains(food) || obstacles.Contains(food)); //writes "@" to indicate food to the designated position it randomized
+                    eat.Play();
+                    lastFoodTime = Environment.TickCount;
+                    sleepTime--;
 
+                    // Things that will be happening with the OBSTACLE once the FOOD got ate by the snake
+
+                    Position obstacle = new Position(); // randomize the position of the obstacles
+                    do
+                    {
+                        obstacle = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
+                            randomNumbersGenerator.Next(0, Console.WindowWidth));
+                    }
+                    while (snakeElements.Contains(obstacle) ||
+                        obstacles.Contains(obstacle) ||
+                        (food.x != obstacle.x && food.y != obstacle.y));
+                    obstacles.Add(obstacle);
+                    Console.SetCursorPosition(obstacle.y, obstacle.x);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write("=");
+                }
+                else
+                {
+                    // moving...
+                    Position last = snakeElements.Dequeue(); // basically moving the snake and delete the last "body part" of the snake to maintain the length of the snake
+                    Console.SetCursorPosition(last.y, last.x);
+                    Console.Write(" ");
+                }
+
+                
+                Random rnd = new Random();
+                int powcount = rnd.Next(5000, 8000);
+
+                if (Environment.TickCount - lastFoodTime3>powcount && Environment.TickCount - lastFoodTime3 < powcount+1000  )
+                {
+                    if (count1==0) {
+                        Console.SetCursorPosition(Powerfood.y, Powerfood.x);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("$");
+                        lastFoodTime2 = Environment.TickCount;
+                    }
+                   
+                }
+                //What will happened if the snake got fed on powerfood:
+                if (snakeNewHead.y == Powerfood.y && snakeNewHead.x == Powerfood.x)
+                {
+                    // Things that will be happening with the FOOD once it got ate by the snake
+                    if(count1==0) {
+                        userPoints *= 2;
+                        Console.SetCursorPosition(Powerfood.y, Powerfood.x);
+                        Console.Write(" ");
+
+                        eat.Play();
+
+                        sleepTime--;
+                    }
+                    count1++;
+                   
+                }
                 // Show and update the score of the player
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -215,7 +360,6 @@ namespace Snake
                         {
                             file.WriteLine(nametext + " - " + userPoints.ToString());
                         }
-                       
 
                         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                         if (keyInfo.Key == ConsoleKey.Enter)
@@ -225,10 +369,11 @@ namespace Snake
                     }
                 }
 
+               
 
                 // The game will be over and user will win if they reached 1000 points
 
-                if (userPoints == 1000)
+                if (userPoints > 1000)
                 {
                     Console.SetCursorPosition(0, 0);
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -251,52 +396,8 @@ namespace Snake
                 if (direction == left) Console.Write("<");
                 if (direction == up) Console.Write("^");
                 if (direction == down) Console.Write("v");
-  
-
-                //What will happened if the snake got fed:
-                if (snakeNewHead.y == food.y && snakeNewHead.x == food.x)
-                {
-                    // Things that will be happening with the FOOD once it got ate by the snake
-
-                    // if user had reach reach a score of 300 it will plus one life
-                    if (userPoints==200)
-                    {
-                        snakeLife += 1;
-                    }
-                    do
-                    {
-                        food = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight), //randomize the new position of the food
-                            randomNumbersGenerator.Next(0, Console.WindowWidth));
-                    }
-                    while (snakeElements.Contains(food) || obstacles.Contains(food)); //writes "@" to indicate food to the designated position it randomized
-                    eat.Play();
-                    lastFoodTime = Environment.TickCount;
-                    sleepTime--;
-
-                    // Things that will be happening with the OBSTACLE once the FOOD got ate by the snake
-
-                    Position obstacle = new Position(); // randomize the position of the obstacles
-                    do
-                    {
-                        obstacle = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
-                            randomNumbersGenerator.Next(0, Console.WindowWidth));
-                    }
-                    while (snakeElements.Contains(obstacle) ||
-                        obstacles.Contains(obstacle) ||
-                        (food.x != obstacle.x && food.y != obstacle.y));
-                    obstacles.Add(obstacle);
-                    Console.SetCursorPosition(obstacle.y, obstacle.x);
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("=");
-                }
-                else
-                {
-                    // moving...
-                    Position last = snakeElements.Dequeue(); // basically moving the snake and delete the last "body part" of the snake to maintain the length of the snake
-                    Console.SetCursorPosition(last.y, last.x);
-                    Console.Write(" ");
-                }
-
+               
+                
 
                 // Initialize the time taken for the food to spawn if the snake doesn't eat it
 
@@ -314,10 +415,22 @@ namespace Snake
                     lastFoodTime = Environment.TickCount;
                 }
 
+                if (count1==0) {
+                    if (Environment.TickCount - lastFoodTime2 >= foodDissapearTime2)
+                    {
+                        Console.SetCursorPosition(Powerfood.y, Powerfood.x);
+                        Console.Write(" ");
+
+                        lastFoodTime2 = Environment.TickCount;
+                    }
+                }
+                
+
                 Console.SetCursorPosition(food.y, food.x);
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("@");
 
+               
                 sleepTime -= 0.01;
 
                 Thread.Sleep((int)sleepTime);

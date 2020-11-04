@@ -1,17 +1,6 @@
-Joel, 10 - 100
-sad - 0
- - 300
-Dennis - 200
-  - 300
-s - 0
-sss - 0
-Final test - 0
-Darrell - 0
-Darrell - 0
-s - 0
-sssssaaaa - 600
-sdede - 100
 darrell - 300
-darrell - 200
-aadada - 400
-adasd - 300
+test - 100
+haha - 100
+asdada - 300
+darrell - 100
+ppp - 100
