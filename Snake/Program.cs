@@ -5,10 +5,15 @@ using System.Text;
 using System.Collections;
 using System.Threading;
 using System.IO;
+
+
+
 class start // menu for the snake game (Darrell Lai Vui Kiat)
 {
     public void mainmenu()
     {
+        
+
         string end = "loop";
         do
         {
@@ -237,6 +242,7 @@ namespace Snake
                 if (snakeNewHead.x >= Console.WindowHeight) snakeNewHead.x = 0;
                 if (snakeNewHead.y >= Console.WindowWidth) snakeNewHead.y = 0;
 
+                //Edited by Brandon
                 foreach (Position position in snakeElements) //writes the body of the snake as "*" on declared position
                 {
                     Console.SetCursorPosition(position.y, position.x);
@@ -272,6 +278,10 @@ namespace Snake
                         obstacle = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
                             randomNumbersGenerator.Next(0, Console.WindowWidth));
                     }
+
+
+                    //Edited by Brandon
+                    //Game will be harder when the snake eat more food
                     while (snakeElements.Contains(obstacle) ||
                         obstacles.Contains(obstacle) ||
                         (food.x != obstacle.x && food.y != obstacle.y));
