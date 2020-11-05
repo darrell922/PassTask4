@@ -88,8 +88,8 @@ namespace Snake
         {
             string path = System.IO.Directory.GetCurrentDirectory();
             string binPath=System.IO.Directory.GetParent(path).ToString();
-            string snakePath = System.IO.Directory.GetParent(binPath).ToString();
-            //Edited directory for other user to play
+            string snakePath = System.IO.Directory.GetParent(binPath).ToString(); //Get path of the game
+            //Edited directory for other user to play (Dennis)
             System.Media.SoundPlayer move = new System.Media.SoundPlayer(snakePath+"\\sound\\move.wav");
             System.Media.SoundPlayer eat = new System.Media.SoundPlayer(snakePath+"\\sound\\eat.wav");
             System.Media.SoundPlayer gameover = new System.Media.SoundPlayer(snakePath+"\\sound\\gameover.wav");
@@ -338,17 +338,17 @@ namespace Snake
                 Console.WriteLine("Remaining Life:" + snakeLife);
                 // the game will be over when the snake hits it body or the obstacles
                     
-                if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
+                if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead)) //If position of head is same with obstacle (Dennis)
                     {
                     //Added snake life and dead sound
                     dying.Play();
-                    snakeLife--;
+                    snakeLife--; //Deduct snake Life (Dennis)
 
                     //add 1 life when user reach 300 points
 
                     Console.SetCursorPosition(25, 0);
-                    Console.WriteLine("Remaining Life:"+snakeLife);
-                    if (snakeLife == 0)
+                    Console.WriteLine("Remaining Life:"+snakeLife);// Snake Life added By Dennis
+                    if (snakeLife == 0) //If snake Life is 0, then the game will be over.
                     {
                         gameover.Play();
 
@@ -365,12 +365,12 @@ namespace Snake
                         Console.SetCursorPosition(35, 8);
                         Console.WriteLine("Please press the ENTER key to exit the game.");
 
-
+                        //Write to text file (Dennis)
 
                         using (System.IO.StreamWriter file =
-                                new System.IO.StreamWriter(snakePath + "\\score.txt", true))
+                                new System.IO.StreamWriter(snakePath + "\\score.txt", true)) //Get path of the text file (Dennis)
                         {
-                            file.WriteLine(nametext + " - " + userPoints.ToString());
+                            file.WriteLine(nametext + " - " + userPoints.ToString()); //nameText is name of player, and userpoint is score (Dennis)
                         }
 
                         ConsoleKeyInfo keyInfo = Console.ReadKey(true);

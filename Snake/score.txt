@@ -4,3 +4,4 @@ haha - 100
 asdada - 300
 darrell - 100
 ppp - 100
+Dennis - 800
